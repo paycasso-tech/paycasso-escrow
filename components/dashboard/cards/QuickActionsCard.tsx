@@ -2,7 +2,7 @@
 import React from 'react';
 import { QuickActionButton } from './QuickActionButton';
 
-export const QuickActionsCard: React.FC = () => (
+export const QuickActionsCard: React.FC<{ user: any; profile: any; wallet: any }> = () => (
   <div
     style={{
       background: '#0D0D0D',

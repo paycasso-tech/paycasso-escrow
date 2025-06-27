@@ -3,17 +3,19 @@ import React, { useEffect, useState } from 'react';
 import { PendingApprovalItem } from './PendingApprovalItem';
 import { createSupabaseBrowserClient } from '@/lib/supabase/browser-client';
 
-export const PendingApprovalsCard: React.FC = () => {
+export const PendingApprovalsCard: React.FC<{ user: any; profile: any; wallet: any }> = ({ user, profile, wallet }) => {
   const [pending, setPending] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchPending = async () => {
       const supabase = createSupabaseBrowserClient();
-      const { data } = await supabase.rpc('get_pending_approvals');
-      setPending(data || []);
+      if (wallet?.circle_wallet_id) {
+        const { data } = await supabase.rpc('get_pending_approvals', { wallet_id: wallet.circle_wallet_id });
+        setPending(data || []);
+      }
     };
     fetchPending();
-  }, []);
+  }, [wallet]);
 
   return (
     <div

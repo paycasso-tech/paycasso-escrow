@@ -11,27 +11,29 @@ interface Transaction {
   counterparty: string;
 }
 
-export const RecentTransactionsTable: React.FC = () => {
+export const RecentTransactionsTable: React.FC<{ user: any; profile: any; wallet: any }> = ({ user, profile, wallet }) => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
   useEffect(() => {
     const fetchTransactions = async () => {
       const supabase = createSupabaseBrowserClient();
-      const { data } = await supabase.rpc('get_recent_transactions');
-      if (data) {
-        setTransactions(
-          data.map((tx: any) => ({
-            id: tx.id,
-            date: new Date(tx.created_at).toISOString().slice(0, 10),
-            amount: tx.amount + ' USDC',
-            status: tx.status,
-            counterparty: tx.counterparty,
-          }))
-        );
+      if (wallet?.circle_wallet_id) {
+        const { data } = await supabase.rpc('get_recent_transactions', { wallet_id: wallet.circle_wallet_id });
+        if (data) {
+          setTransactions(
+            data.map((tx: any) => ({
+              id: tx.id,
+              date: new Date(tx.created_at).toISOString().slice(0, 10),
+              amount: tx.amount + ' USDC',
+              status: tx.status,
+              counterparty: tx.counterparty,
+            }))
+          );
+        }
       }
     };
     fetchTransactions();
-  }, []);
+  }, [wallet]);
 
   return (
     <div style={{

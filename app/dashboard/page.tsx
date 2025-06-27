@@ -1,5 +1,4 @@
 import { redirect } from 'next/navigation';
-import { cookies } from 'next/headers';
 import { createSupabaseServerComponentClient } from '@/lib/supabase/server-client';
 import { StatCardsRow } from '@/components/dashboard/cards/StatCardsRow';
 import { RecentTransactionsSection } from '@/components/dashboard/transactions/RecentTransactionsSection';
@@ -7,15 +6,38 @@ import { QuickActionsAndApprovalsRow } from '@/components/dashboard/cards/QuickA
 import { TopBar } from '@/components/dashboard/header/TopBar';
 
 export default async function DashboardPage() {
-  const supabase = createSupabaseServerComponentClient({ cookies });
-  const { data: { session } } = await supabase.auth.getSession();
-  if (!session) redirect('/sign-in');
+  const supabase = createSupabaseServerComponentClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return redirect('/sign-in');
+
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('id')
+    .eq('auth_user_id', user.id)
+    .single();
+
+  const { data: wallet } = await supabase
+    .schema('public')
+    .from('wallets')
+    .select()
+    .eq('profile_id', profile?.id)
+    .single();
+
+  if (!wallet) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[60vh]">
+        <h1 className="text-2xl font-bold mb-4">No wallet found</h1>
+        <p className="text-gray-500">Please contact support to set up your wallet.</p>
+      </div>
+    );
+  }
+
   return (
     <>
-      <TopBar />
-      <StatCardsRow />
-      <RecentTransactionsSection />
-      <QuickActionsAndApprovalsRow />
+      <TopBar user={user} profile={profile} wallet={wallet} />
+      <StatCardsRow user={user} profile={profile} wallet={wallet} />
+      <RecentTransactionsSection user={user} profile={profile} wallet={wallet} />
+      <QuickActionsAndApprovalsRow user={user} profile={profile} wallet={wallet} />
     </>
   );
 }
