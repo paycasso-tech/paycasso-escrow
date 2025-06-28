@@ -3,7 +3,7 @@ import { createSupabaseServerComponentClient } from '@/lib/supabase/server-clien
 import { StatCardsRow } from '@/components/dashboard/cards/StatCardsRow';
 import { RecentTransactionsSection } from '@/components/dashboard/transactions/RecentTransactionsSection';
 import { QuickActionsAndApprovalsRow } from '@/components/dashboard/cards/QuickActionsAndApprovalsRow';
-import { TopBar } from '@/components/dashboard/header/TopBar';
+import { PageHeader } from '@/components/ui/page-header';
 
 export default async function DashboardPage() {
   const supabase = createSupabaseServerComponentClient();
@@ -32,9 +32,18 @@ export default async function DashboardPage() {
     );
   }
 
+  let firstName = user?.user_metadata?.full_name?.split(' ')[0];
+  if (!firstName && user?.email) {
+    firstName = user.email.split('@')[0];
+  }
+
   return (
     <>
-      <TopBar user={user} profile={profile} wallet={wallet} />
+      <PageHeader
+        title={`Welcome back, ${firstName || 'User'}!`}
+        subtitle="Your Paycasso Escrow at a glance."
+        userEmail={user.email}
+      />
       <StatCardsRow user={user} profile={profile} wallet={wallet} />
       <RecentTransactionsSection user={user} profile={profile} wallet={wallet} />
       <QuickActionsAndApprovalsRow user={user} profile={profile} wallet={wallet} />

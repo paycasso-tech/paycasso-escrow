@@ -6,9 +6,54 @@ import Image from 'next/image';
 interface UserMenuProps {
   email: string;
   userImg?: string;
+  style?: React.CSSProperties;
 }
 
-export const UserMenu: React.FC<UserMenuProps> = ({ email, userImg = '/user.png' }) => {
+// The blue profile/email menu (no trigger, always visible)
+export const UserMenu: React.FC<UserMenuProps> = ({ email, userImg = '/user.png', style }) => (
+  <div
+    style={{
+      position: 'relative',
+      width: 251.36,
+      borderRadius: 7,
+      border: '0.5px solid #2563EBCC',
+      background: '#1B345780',
+      display: 'flex',
+      alignItems: 'center',
+      padding: '0 16px',
+      gap: 12,
+      zIndex: 1000,
+      ...style,
+    }}
+  >
+    <Image
+      src={userImg}
+      alt="User"
+      width={33.63}
+      height={33.63}
+      style={{ borderRadius: '50%' }}
+    />
+    <span
+      style={{
+        color: '#fff',
+        fontFamily: 'Poppins, sans-serif',
+        fontWeight: 400,
+        fontSize: 12,
+        width: 157,
+        height: 18,
+        overflow: 'hidden',
+        whiteSpace: 'nowrap',
+        textOverflow: 'ellipsis',
+      }}
+    >
+      {email}
+    </span>
+    <Image src="/arrow-down.svg" alt="Arrow Down" width={16} height={16} />
+  </div>
+);
+
+// The three dots trigger that shows the UserMenu as a dropdown
+export const UserMenuTrigger: React.FC<UserMenuProps> = ({ email, userImg }) => {
   const [open, setOpen] = useState(false);
   return (
     <div style={{ position: 'relative', display: 'inline-block' }}>
@@ -17,11 +62,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ email, userImg = '/user.png'
         style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, marginLeft: 16 }}
         aria-label="User menu"
       >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="5" cy="12" r="2" fill="#fff"/>
-          <circle cx="12" cy="12" r="2" fill="#fff"/>
-          <circle cx="19" cy="12" r="2" fill="#fff"/>
-        </svg>
+        <Image src="/dots.svg" alt="User menu" width={24} height={24} />
       </button>
       {open && (
         <>
@@ -38,45 +79,10 @@ export const UserMenu: React.FC<UserMenuProps> = ({ email, userImg = '/user.png'
             onClick={() => setOpen(false)}
           />
           <div
-            style={{
-              position: 'absolute',
-              top: 36,
-              right: 0,
-              width: 251.36,
-              borderRadius: 7,
-              border: '0.5px solid #2563EBCC',
-              background: '#1B345780',
-              display: 'flex',
-              alignItems: 'center',
-              padding: '0 16px',
-              gap: 12,
-              zIndex: 1000,
-            }}
+            style={{ position: 'absolute', top: 36, right: 0 }}
             onClick={e => e.stopPropagation()}
           >
-            <Image
-              src={userImg}
-              alt="User"
-              width={33.63}
-              height={33.63}
-              style={{ borderRadius: '50%' }}
-            />
-            <span
-              style={{
-                color: '#fff',
-                fontFamily: 'Poppins, sans-serif',
-                fontWeight: 400,
-                fontSize: 12,
-                width: 157,
-                height: 18,
-                overflow: 'hidden',
-                whiteSpace: 'nowrap',
-                textOverflow: 'ellipsis',
-              }}
-            >
-              {email}
-            </span>
-            <Image src="/arrow-down.svg" alt="Arrow Down" width={16} height={16} />
+            <UserMenu email={email} userImg={userImg} />
           </div>
         </>
       )}

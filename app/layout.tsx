@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/sonner";
 import Link from "next/link";
 import "./globals.css";
 import { ThemeSwitcher } from "@/components/theme-switcher";
+import { DashboardSidebar } from "@/components/dashboard/sidebar";
 
 const defaultUrl = process.env.NEXT_PUBLIC_VERCEL_URL
   ? process.env.NEXT_PUBLIC_VERCEL_URL
@@ -23,9 +24,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Use a simple check for "/dashboard" in the pathname.
-  const isDashboard = typeof window !== 'undefined' && window.location.pathname.startsWith('/dashboard');
-
   return (
     <html lang="en" className={GeistSans.className} suppressHydrationWarning>
       <body className="bg-background overflow-x-hidden text-foreground">
@@ -55,14 +53,8 @@ export default function RootLayout({
             </nav>
 
             {/* Main Content with padding-top to prevent header overlap */}
-            <main className={
-              typeof window !== 'undefined' && window.location.pathname.startsWith('/dashboard')
-                ? 'flex-1 flex flex-row pt-16 w-full' // pt-16 = h-16 header
-                : 'flex-1 flex flex-col items-center pt-24 w-full'
-            }>
-              {typeof window !== 'undefined' && window.location.pathname.startsWith('/dashboard')
-                ? children
-                : <div className="w-full">{children}</div>}
+            <main className="flex-1 flex flex-col items-center pt-24 w-full">
+              <div className="w-full">{children}</div>
             </main>
           </div>
         </ThemeProvider>

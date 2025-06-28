@@ -41,6 +41,11 @@ export const NAVIGATION_ITEMS = [
     icon: 'transactions'
   },
   {
+    title: 'Contracts',
+    href: '/dashboard/contracts',
+    icon: 'agreements'
+  },
+  {
     title: 'Agreements',
     href: '/agreements',
     icon: 'agreements'
