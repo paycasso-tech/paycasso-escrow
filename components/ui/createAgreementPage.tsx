@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { createClient } from "@/lib/utils/supabase/client";
 import { Check, ChevronsUpDown } from "lucide-react";
 import {
   Card,
@@ -83,85 +82,54 @@ export const CreateAgreementPage = () => {
   );
   const [userId, setUserId] = useState<string | null>(null);
 
-  const supabase = createClient();
+  // const supabase = createClient();
 
+  // useEffect(() => {
+  //   const loadData = async () => {
+  //     try {
+  //       // Get current user
+  //       const {
+  //         data: { user },
+  //         error: userError,
+  //       } = await supabase.auth.getUser();
+  //       if (userError) throw userError;
+  //       if (!user) throw new Error("Not authenticated");
+  //       setUserId(user.id);
+  //       // Get current user's profile with wallet
+  //       const { data: currentProfile, error: profileError } = await supabase
+  //         .from("profiles")
+  //         .select(`id, name, auth_user_id, email, wallets (id, wallet_address, profile_id)`)
+  //         .eq("auth_user_id", user.id)
+  //         .single();
+  //       if (profileError) throw profileError;
+  //       setCurrentUserProfile(currentProfile);
+  //       // Get all other profiles with their wallets
+  //       const { data: beneficiaryProfiles, error: beneficiariesError } = await supabase
+  //         .from("profiles")
+  //         .select(`id, name, auth_user_id, email, wallets (id, wallet_address, profile_id)`)
+  //         .neq("auth_user_id", user.id);
+  //       if (beneficiariesError) throw beneficiariesError;
+  //       if (!beneficiaryProfiles) {
+  //         throw new Error("No beneficiary profiles found.");
+  //       }
+  //       // Filter out profiles without wallets
+  //       const validBeneficiaries = beneficiaryProfiles.filter(
+  //         (profile) => profile.wallets && profile.wallets.length > 0
+  //       );
+  //       setBeneficiaries(validBeneficiaries);
+  //     } catch (error) {
+  //       console.error("Error loading data:", error);
+  //       setError(error instanceof Error ? error.message : "Failed to load profiles");
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   loadData();
+  // }, []);
+
+  // For UI development, set loading to false and leave beneficiaries empty
   useEffect(() => {
-    const loadData = async () => {
-      try {
-        // Get current user
-        const {
-          data: { user },
-          error: userError,
-        } = await supabase.auth.getUser();
-
-        if (userError) throw userError;
-        if (!user) throw new Error("Not authenticated");
-
-        setUserId(user.id);
-
-        // Get current user's profile with wallet
-        const { data: currentProfile, error: profileError } = await supabase
-          .from("profiles")
-          .select(
-            `
-            id,
-            name,
-            auth_user_id,
-            email,
-            wallets (
-              id,
-              wallet_address,
-              profile_id
-            )
-          `
-          )
-          .eq("auth_user_id", user.id)
-          .single();
-
-        if (profileError) throw profileError;
-        setCurrentUserProfile(currentProfile);
-
-        // Get all other profiles with their wallets
-        const { data: beneficiaryProfiles, error: beneficiariesError } =
-          await supabase
-            .from("profiles")
-            .select(
-              `
-            id,
-            name,
-            auth_user_id,
-            email,
-            wallets (
-              id,
-              wallet_address,
-              profile_id
-            )
-          `
-            )
-            .neq("auth_user_id", user.id);
-
-        if (beneficiariesError) throw beneficiariesError;
-
-        if (!beneficiaryProfiles) {
-          throw new Error("No beneficiary profiles found.");
-        }
-
-        // Filter out profiles without wallets
-        const validBeneficiaries = beneficiaryProfiles.filter(
-          (profile) => profile.wallets && profile.wallets.length > 0
-        );
-        setBeneficiaries(validBeneficiaries);
-      } catch (error) {
-        console.error("Error loading data:", error);
-        setError(
-          error instanceof Error ? error.message : "Failed to load profiles"
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadData();
+    setLoading(false);
   }, []);
 
   const handleBeneficiarySelect = (beneficiaryName: string) => {
@@ -192,11 +160,7 @@ export const CreateAgreementPage = () => {
   }
 
   if (!loading && !currentUserProfile?.wallets?.[0]) {
-    return (
-      <div className="text-center text-red-500 p-4">
-        <p>No wallet found for current user</p>
-      </div>
-    );
+    return null;
   }
 
   return (

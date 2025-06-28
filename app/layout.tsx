@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/sonner";
 import Link from "next/link";
 import "./globals.css";
 import { ThemeSwitcher } from "@/components/theme-switcher";
+import { DashboardSidebar } from "@/components/dashboard/sidebar";
 
 const defaultUrl = process.env.NEXT_PUBLIC_VERCEL_URL
   ? process.env.NEXT_PUBLIC_VERCEL_URL
@@ -18,14 +19,14 @@ export const metadata = {
   description: "Automated escrow agent that facilitates secure transactions",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
     <html lang="en" className={GeistSans.className} suppressHydrationWarning>
-      <body className="bg-background text-foreground">
+      <body className="bg-background overflow-x-hidden text-foreground">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -33,10 +34,10 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <Toaster expand />
-          <div className="min-h-screen flex flex-col">
+          <div className="min-h-screen w-screen flex flex-col">
             {/* Fixed Header */}
-            <nav className="fixed top-0 left-0 right-0 z-50 border-b bg-background/80 backdrop-blur-sm border-b-foreground/10 h-16">
-              <div className="w-full max-w-7xl mx-auto flex justify-between items-center h-full px-5 text-sm">
+            <nav className="fixed top-0 left-0 right-0 z-50 border-b bg-background/80 backdrop-blur-sm border-b-foreground/10 h-16 w-full">
+              <div className="w-full flex justify-between items-center h-full px-5 text-sm">
                 <div className="flex gap-5 items-center font-semibold">
                   <ThemeSwitcher />
                   <Link
@@ -52,8 +53,8 @@ export default async function RootLayout({
             </nav>
 
             {/* Main Content with padding-top to prevent header overlap */}
-            <main className="flex-1 flex flex-col items-center pt-24">
-              <div className="w-full max-w-7xl">{children}</div>
+            <main className="flex-1 flex flex-col items-center pt-24 w-full">
+              <div className="w-full">{children}</div>
             </main>
           </div>
         </ThemeProvider>

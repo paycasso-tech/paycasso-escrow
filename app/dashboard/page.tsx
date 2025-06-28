@@ -1,38 +1,26 @@
-import { createSupabaseServerComponentClient } from "@/lib/supabase/server-client";
-import { redirect } from "next/navigation";
-import { CreateAgreementPage } from "@/components/ui/createAgreementPage";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { EscrowAgreements } from "@/components/escrow-agreements";
-import { WalletBalance } from "@/components/wallet-balance";
-import { RequestUsdcButton } from "@/components/request-usdc-button";
-import { USDCButton } from "@/components/usdc-button";
-import dynamic from "next/dynamic";
-import { WalletInformationDialog } from "@/components/wallet-information-dialog";
+import { redirect } from 'next/navigation';
+import { createSupabaseServerComponentClient } from '@/lib/supabase/server-client';
+import { StatCardsRow } from '@/components/dashboard/cards/StatCardsRow';
+import { RecentTransactionsSection } from '@/components/dashboard/transactions/RecentTransactionsSection';
+import { QuickActionsAndApprovalsRow } from '@/components/dashboard/cards/QuickActionsAndApprovalsRow';
+import { PageHeader } from '@/components/ui/page-header';
 
-const Transactions = dynamic(() => import('@/components/transactions').then(mod => mod.Transactions), { ssr: false })
-
-export default async function ProtectedPage() {
+export default async function DashboardPage() {
   const supabase = createSupabaseServerComponentClient();
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return redirect("/sign-in");
-  }
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return redirect('/sign-in');
 
   const { data: profile } = await supabase
-    .from("profiles")
-    .select("id")
-    .eq("auth_user_id", user.id)
+    .from('profiles')
+    .select('id')
+    .eq('auth_user_id', user.id)
     .single();
 
   const { data: wallet } = await supabase
-    .schema("public")
-    .from("wallets")
+    .schema('public')
+    .from('wallets')
     .select()
-    .eq("profile_id", profile?.id)
+    .eq('profile_id', profile?.id)
     .single();
 
   if (!wallet) {
@@ -74,29 +62,24 @@ export default async function ProtectedPage() {
           <CreateAgreementPage />
         </div>
       </div>
+    );
+  }
 
-      {/* Agreements Section */}
-      <div className="break-inside-avoid mb-4">
-          <EscrowAgreements
-            userId={user.id}
-            profileId={profile?.id}
-            walletId={wallet.circle_wallet_id}
-          />
-        </div>
+  let firstName = user?.user_metadata?.full_name?.split(' ')[0];
+  if (!firstName && user?.email) {
+    firstName = user.email.split('@')[0];
+  }
 
-        {/* Transactions Section */}
-        <div className="break-inside-avoid mb-4">
-          <div className="flex flex-col gap-2 items-start">
-            <Card className="break-inside-avoid mb-4 w-full">
-              <CardHeader>
-                <CardTitle>Your transactions</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Transactions wallet={wallet} profile={profile} />
-              </CardContent>
-            </Card>
-          </div>
-        </div>
+  return (
+    <>
+      <PageHeader
+        title={`Welcome back, ${firstName || 'User'}!`}
+        subtitle="Your Paycasso Escrow at a glance."
+        userEmail={user.email}
+      />
+      <StatCardsRow user={user} profile={profile} wallet={wallet} />
+      <RecentTransactionsSection user={user} profile={profile} wallet={wallet} />
+      <QuickActionsAndApprovalsRow user={user} profile={profile} wallet={wallet} />
     </>
   );
 }
