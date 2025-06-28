@@ -7,7 +7,6 @@ import { ContractsTable } from '@/components/contracts/ContractsTable';
 import { ContractsSummary } from '@/components/contracts/ContractsSummary';
 import { createSupabaseBrowserClient } from '@/lib/supabase/browser-client';
 import { useRouter } from 'next/navigation';
-import type { EscrowAgreement } from '@/types/agreements';
 import type { Contract } from '@/types/contracts';
 
 export default function ContractsPage() {
