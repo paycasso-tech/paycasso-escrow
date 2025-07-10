@@ -4,6 +4,12 @@ import { StatCardsRow } from '@/components/dashboard/cards/StatCardsRow';
 import { RecentTransactionsSection } from '@/components/dashboard/transactions/RecentTransactionsSection';
 import { QuickActionsAndApprovalsRow } from '@/components/dashboard/cards/QuickActionsAndApprovalsRow';
 import { PageHeader } from '@/components/ui/page-header';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { WalletInformationDialog } from '@/components/wallet-information-dialog';
+import { WalletBalance } from '@/components/wallet-balance';
+import { USDCButton } from '@/components/usdc-button';
+import { RequestUsdcButton } from '@/components/request-usdc-button';
+import { CreateAgreementPage } from '@/components/ui/createAgreementPage';
 
 export default async function DashboardPage() {
   const supabase = createSupabaseServerComponentClient();
@@ -28,39 +34,6 @@ export default async function DashboardPage() {
       <div className="flex flex-col items-center justify-center min-h-[60vh]">
         <h1 className="text-2xl font-bold mb-4">No wallet found</h1>
         <p className="text-gray-500">Please contact support to set up your wallet.</p>
-      </div>
-    );
-  }
-
-  return (
-    <>
-      <div className="flex flex-wrap space-x-4 mb-4">
-        {/* Wallet Card */}
-        <Card className="break-inside-avoid w-[calc(50%-0.5rem)]">
-          <CardHeader className="flex-row items-center space-between">
-            <CardTitle>Account balance</CardTitle>
-            <WalletInformationDialog wallet={wallet} />
-          </CardHeader>
-          <CardContent>
-            <div className="grid w-full items-center gap-6">
-              <div className="flex flex-col space-y-1.5">
-                <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-                  <WalletBalance walletId={wallet.circle_wallet_id} />
-                </h1>
-              </div>
-              <div className="flex gap-2">
-                <USDCButton className="flex-1" mode="BUY" walletAddress={wallet.wallet_address} />
-                <USDCButton className="flex-1" mode="SELL" walletAddress={wallet.wallet_address} />
-                {process.env.NODE_ENV === "development" && <RequestUsdcButton walletAddress={wallet.wallet_address} />}
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Create Agreement Section */}
-        <div className="break-inside-avoid w-[calc(50%-0.5rem)] flex">
-          <CreateAgreementPage />
-        </div>
       </div>
     );
   }
