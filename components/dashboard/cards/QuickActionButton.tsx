@@ -25,8 +25,8 @@ export const QuickActionButton: React.FC<QuickActionButtonProps> = ({
   <Button
     type="button"
     onClick={onClick}
-    style={{ background, color: textColor, height, width: fullWidth ? "100%" : 180 }}
     className="flex items-center justify-center gap-3 rounded-lg font-semibold text-base p-0"
+    style={{ background, color: textColor, height }}
   >
     <span className="flex items-center gap-3 w-full justify-center">
       <Image src={icon} alt={text} width={20} height={20} />

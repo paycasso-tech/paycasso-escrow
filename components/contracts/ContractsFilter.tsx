@@ -67,7 +67,6 @@ export const ContractsFilter: React.FC<ContractsFilterProps> = ({
       onRetryClick={onRetryClick}
       showRetry={true}
       className={className}
-      style={style}
     />
   );
 }; 

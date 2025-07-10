@@ -15,44 +15,23 @@ export function DashboardSidebar() {
 
   return (
     <aside
-      style={{
-        width: SIDEBAR_DIMENSIONS.container.width,
-        height: SIDEBAR_DIMENSIONS.container.height,
-        background: SIDEBAR_DIMENSIONS.container.background,
-        fontFamily: 'Poppins, sans-serif',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-start',
-        padding: 0,
-        position: 'relative',
-        left: 0,
-        top: 0,
-        marginTop: 0,
-      }}
+      className="w-64 h-full bg-gray-100 flex flex-col items-start"
     >
       
       <div
-        style={{
-          height: SIDEBAR_DIMENSIONS.logo.height,
-          display: 'flex',
-          alignItems: 'center',
-          marginBottom: '32px',
-          marginLeft: 0,
-          marginTop: 0,
-          paddingTop: 0,
-        }}
+        className="h-16 flex items-center mb-8"
       >
         <Image
           src="/logo.png"
           alt="Paycasso"
           width={220}
           height={60}
-          style={{ objectFit: 'contain' }}
+          className="object-contain"
         />
       </div>
 
-      <nav style={{ width: '100%' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%' }}>
+      <nav className="w-full">
+        <div className="flex flex-col gap-2 w-full">
           {navItemsWithSignOut.map((item) => (
             <NavItem
               key={item.href}
