@@ -24,50 +24,28 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
   className = '',
   style = {}
 }) => {
-  const defaultStyle: React.CSSProperties = {
-    paddingLeft: 32,
-    paddingRight: 32,
-    ...style,
-  };
-
   return (
-    <div style={defaultStyle} className={className}>
+    <div className={"px-8 " + className}>
       {/* Top right: Bell and Profile */}
       {(showBell || showUserMenu) && (
-        <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 16, marginTop: 32, marginBottom: 8 }}>
+        <div className="flex justify-end items-center gap-4 mt-8 mb-2">
           {showBell && <Bell />}
           {showUserMenu && <UserMenu email={userEmail} />}
         </div>
       )}
-      
       {/* Page Title and Actions */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginTop: 48, marginBottom: 24 }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          <span style={{
-            fontFamily: 'Poppins, sans-serif',
-            fontWeight: 600,
-            fontSize: 32,
-            lineHeight: '100%',
-            letterSpacing: 0,
-            color: '#fff',
-            background: '#fff',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-          }}>
+      <div className="flex items-center gap-4 mt-12 mb-6">
+        <div className="flex flex-col gap-2">
+          <span className="font-semibold text-3xl leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white to-white">
             {title}
           </span>
           {subtitle && (
-            <span style={{
-              fontFamily: 'Poppins, sans-serif',
-              fontWeight: 400,
-              fontSize: 14,
-              color: '#6D6D6D',
-            }}>
+            <span className="font-normal text-base text-muted-foreground">
               {subtitle}
             </span>
           )}
         </div>
-        <div style={{ flex: 1 }} />
+        <div className="flex-1" />
         {actions}
       </div>
     </div>

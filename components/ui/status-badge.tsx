@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 
-export interface StatusConfig {
+interface StatusConfig {
   bg: string;
   color: string;
   text: string;
@@ -11,59 +11,39 @@ export interface StatusBadgeProps {
   status: string;
   config?: StatusConfig;
   className?: string;
-  style?: React.CSSProperties;
 }
 
 const defaultStatusConfigs: Record<string, StatusConfig> = {
   Completed: {
-    bg: '#122318CC',
-    color: '#18BD26',
+    bg: 'bg-green-900/80',
+    color: 'text-green-500',
     text: 'Completed',
   },
   Pending: {
-    bg: '#533E00CC',
-    color: '#FFD600',
+    bg: 'bg-yellow-900/80',
+    color: 'text-yellow-500',
     text: 'Pending',
   },
   Disputed: {
-    bg: '#351414CC',
-    color: '#BD181B',
+    bg: 'bg-red-900/80',
+    color: 'text-red-500',
     text: 'Disputed',
   },
-  // Add more status types as needed
 };
 
 export const StatusBadge: React.FC<StatusBadgeProps> = ({
   status,
   config,
   className = '',
-  style = {}
 }) => {
   const statusConfig = config || defaultStatusConfigs[status] || {
-    bg: '#1D1D1D',
-    color: '#959595',
+    bg: 'bg-[#1D1D1D]',
+    color: 'text-[#959595]',
     text: status,
   };
 
-  const defaultStyle: React.CSSProperties = {
-    display: 'inline-flex',
-    alignItems: 'center',
-    background: statusConfig.bg,
-    color: statusConfig.color,
-    borderRadius: 8,
-    padding: '2px 16px',
-    fontFamily: 'Poppins, sans-serif',
-    fontWeight: 500,
-    fontSize: 12,
-    height: 24,
-    minWidth: 92,
-    justifyContent: 'center',
-    textAlign: 'center',
-    ...style,
-  };
-
   return (
-    <span style={defaultStyle} className={className}>
+    <span className={`inline-flex items-center ${statusConfig.bg} ${statusConfig.color} rounded-lg px-4 py-1 font-medium text-xs h-6 min-w-[92px] justify-center text-center ${className}`}>
       {statusConfig.text}
     </span>
   );

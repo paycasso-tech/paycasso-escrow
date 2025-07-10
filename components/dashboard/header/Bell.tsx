@@ -20,30 +20,19 @@ export const Bell: React.FC = () => {
   }, []);
 
   return (
-    <div ref={ref} style={{ position: 'relative', display: 'inline-block' }}>
+    <div ref={ref} className="relative inline-block">
       <button
         onClick={() => setOpen(true)}
-        style={{ width: 27, height: 27, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+        className="w-[27px] h-[27px] flex items-center justify-center bg-none border-none p-0 cursor-pointer"
         aria-label="Notifications"
       >
         <Image src="/bell.svg" alt="Notifications" width={27} height={27} />
       </button>
       {open && (
         <div
-          style={{
-            position: 'absolute',
-            top: 36,
-            right: 0,
-            minWidth: 220,
-            background: '#18181b',
-            borderRadius: 12,
-            padding: 24,
-            color: '#fff',
-            zIndex: 1000,
-            boxShadow: '0 4px 24px rgba(0,0,0,0.25)',
-          }}
+          className="absolute top-9 right-0 min-w-[220px] bg-zinc-900 rounded-xl p-6 text-white z-[1000] shadow-lg"
         >
-          <div style={{ textAlign: 'center' }}>No notifications</div>
+          <div className="text-center">No notifications</div>
         </div>
       )}
     </div>

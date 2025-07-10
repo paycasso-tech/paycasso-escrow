@@ -1,26 +1,12 @@
 'use client';
+import { Card } from "@/components/ui/card";
 import React from 'react';
 import { QuickActionButton } from './QuickActionButton';
 
 export const QuickActionsCard: React.FC<{ user: any; profile: any; wallet: any }> = () => (
-  <div
-    style={{
-      background: '#0D0D0D',
-      borderRadius: 16,
-      padding: '20px 24px',
-      boxShadow: '0 1px 2px rgba(0,0,0,0.04)',
-      border: '1px solid #2B2B2B80',
-      marginBottom: 0,
-      flex: 1,
-      minWidth: 0,
-      display: 'flex',
-      flexDirection: 'column',
-      gap: 10,
-      justifyContent: 'flex-start',
-    }}
-  >
-    <div style={{ fontWeight: 600, fontSize: 17, marginBottom: 10 }}>Quick Actions</div>
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 12, width: '100%' }}>
+  <Card className="bg-[#0D0D0D] rounded-2xl p-5 shadow-sm border border-[#2B2B2B80] mb-0 flex-1 min-w-0 flex flex-col gap-2 justify-start">
+    <div className="font-semibold text-lg mb-2">Quick Actions</div>
+    <div className="flex flex-col gap-3 w-full">
       <QuickActionButton
         icon="/add.svg"
         text="New Escrow"
@@ -38,5 +24,5 @@ export const QuickActionsCard: React.FC<{ user: any; profile: any; wallet: any }
         height={48}
       />
     </div>
-  </div>
+  </Card>
 ); 

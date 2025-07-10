@@ -1,6 +1,7 @@
 'use client';
-import React from 'react';
-import Image from 'next/image';
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import React from "react";
 
 export interface ActionButton {
   icon: string;
@@ -12,43 +13,25 @@ export interface ActionButton {
 export interface ActionButtonsProps {
   actions: ActionButton[];
   className?: string;
-  style?: React.CSSProperties;
 }
 
 export const ActionButtons: React.FC<ActionButtonsProps> = ({
   actions,
-  className = '',
-  style = {}
+  className = "",
 }) => {
-  const defaultStyle: React.CSSProperties = {
-    display: 'flex',
-    gap: 8,
-    ...style,
-  };
-
   return (
-    <div style={defaultStyle} className={className}>
+    <div className={"flex gap-2 " + className}>
       {actions.map((action, index) => (
-        <button
+        <Button
           key={action.icon}
           onClick={action.onClick}
           disabled={action.disabled}
-          style={{
-            width: 27,
-            height: 27,
-            borderRadius: 5,
-            border: '1px solid #2B2B2B80',
-            background: '#1D1D1D80',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginLeft: index === 0 ? 0 : 4,
-            cursor: action.disabled ? 'not-allowed' : 'pointer',
-            opacity: action.disabled ? 0.5 : 1,
-          }}
+          size="icon"
+          variant="outline"
+          className="flex items-center justify-center p-0 w-7 h-7 rounded"
         >
-          <Image src={`/${action.icon}.svg`} alt={action.alt} width={16} height={16} />
-        </button>
+          <Image src={`/${action.icon}.svg`} alt={action.alt} width={16} height={16} className="inline-block" />
+        </Button>
       ))}
     </div>
   );

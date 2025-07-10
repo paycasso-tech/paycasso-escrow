@@ -1,6 +1,7 @@
 'use client';
-import React from 'react';
-import Image from 'next/image';
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import React from "react";
 
 interface QuickActionButtonProps {
   icon: string;
@@ -12,29 +13,24 @@ interface QuickActionButtonProps {
   height?: number;
 }
 
-export const QuickActionButton: React.FC<QuickActionButtonProps> = ({ icon, text, background, onClick, textColor = '#fff', fullWidth = false, height = 40 }) => (
-  <button
+export const QuickActionButton: React.FC<QuickActionButtonProps> = ({
+  icon,
+  text,
+  background,
+  onClick,
+  textColor = "#fff",
+  fullWidth = false,
+  height = 40,
+}) => (
+  <Button
+    type="button"
     onClick={onClick}
-    style={{
-      width: fullWidth ? '100%' : 180,
-      height,
-      borderRadius: 8,
-      background,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      gap: 12,
-      border: 'none',
-      fontFamily: 'Poppins, sans-serif',
-      fontWeight: 600,
-      fontSize: 15,
-      color: textColor,
-      cursor: 'pointer',
-    }}
+    style={{ background, color: textColor, height, width: fullWidth ? "100%" : 180 }}
+    className="flex items-center justify-center gap-3 rounded-lg font-semibold text-base p-0"
   >
-    <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', gap: 12 }}>
+    <span className="flex items-center gap-3 w-full justify-center">
       <Image src={icon} alt={text} width={20} height={20} />
-      <span style={{ color: textColor }}>{text}</span>
+      <span className="" style={{ color: textColor }}>{text}</span>
     </span>
-  </button>
+  </Button>
 ); 

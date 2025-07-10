@@ -49,26 +49,14 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   };
 
   return (
-    <div style={defaultStyle} className={className}>
+    <div className={"flex items-center gap-4 mb-4 " + className}>
       {/* Search Input */}
       {onSearchChange && (
         <Input
           placeholder={searchPlaceholder}
           value={searchValue}
           onChange={e => onSearchChange(e.target.value)}
-          style={{
-            width: 257,
-            height: 46,
-            borderRadius: 30,
-            border: '1px solid #2B2B2B80',
-            background: '#1D1D1D80',
-            color: '#fff',
-            fontFamily: 'Poppins, sans-serif',
-            fontWeight: 400,
-            fontSize: 14,
-            paddingLeft: 24,
-            marginRight: 8,
-          }}
+          className="w-[257px] h-[46px] rounded-full border border-[#2B2B2B80] bg-[#1D1D1D80] text-white font-normal text-sm pl-6 mr-2"
         />
       )}
       
@@ -78,12 +66,11 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           text="Filters"
           icon="filter"
           iconAlt="Filter"
-          variant="muted"
+          variant="outline"
           size="md"
           iconAfter={true}
-          color="#6D6D6D"
           onClick={onFilterClick}
-          style={{ padding: '0 4px' }}
+          className="px-1"
         />
       )}
       
@@ -95,11 +82,10 @@ export const FilterBar: React.FC<FilterBarProps> = ({
               text={filter.label}
               icon="arrow-down"
               iconAlt="Dropdown"
-              variant="muted"
+              variant="outline"
               size="md"
               iconAfter={true}
-              color="#6D6D6D"
-              style={{ justifyContent: 'space-between', whiteSpace: 'nowrap' }}
+              className="justify-between whitespace-nowrap"
             />
           </DropdownMenuTrigger>
           <DropdownMenuContent>
@@ -120,10 +106,10 @@ export const FilterBar: React.FC<FilterBarProps> = ({
         <IconButton
           icon="retry"
           alt="Retry"
-          variant="muted"
+          variant="outline"
           size="sm"
-          color="#6D6D6D"
           onClick={onRetryClick}
+          className="text-muted-foreground"
         />
       )}
     </div>

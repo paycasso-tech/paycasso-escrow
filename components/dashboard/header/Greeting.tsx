@@ -2,20 +2,7 @@
 import React from 'react';
 
 export const Greeting: React.FC<{ name: string }> = ({ name }) => (
-  <h1
-    style={{
-      width: 388,
-      height: 48,
-      fontFamily: 'Poppins, sans-serif',
-      fontWeight: 600,
-      fontSize: 32,
-      lineHeight: '100%',
-      letterSpacing: 0,
-      color: '#fff',
-      margin: 0,
-    }}
-    className="truncate"
-  >
+  <h1 className="truncate w-[388px] h-12 font-poppins font-semibold text-3xl leading-none tracking-tight text-white m-0">
     Welcome Back, {name}!
   </h1>
 ); 
