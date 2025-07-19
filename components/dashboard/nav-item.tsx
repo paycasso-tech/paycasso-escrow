@@ -19,35 +19,15 @@ export function NavItem({ href, icon, title }: NavItemProps) {
   return (
     <Link
       href={href}
-      style={{
-        width: SIDEBAR_DIMENSIONS.navItem.width,
-        height: SIDEBAR_DIMENSIONS.navItem.height,
-        paddingLeft: 24,
-        position: 'relative',
-        display: 'flex',
-        alignItems: 'center',
-      }}
       className={cn(
         'flex items-center gap-3 rounded-[7px] transition-colors',
         isActive ? 'bg-[#1B3457] text-white' : 'text-[#959595] hover:text-white'
       )}
     >
       {isActive && (
-        <div style={{
-          position: 'absolute',
-          left: -16,
-          top: 6,
-          bottom: 6,
-          width: 8,
-          borderRadius: '8px 0 0 8px',
-          background: '#5B9BFF',
-        }} />
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-1/2 bg-blue-500 rounded-r-full" />
       )}
       <div 
-        style={{
-          width: SIDEBAR_DIMENSIONS.icon.width,
-          height: SIDEBAR_DIMENSIONS.icon.height,
-        }}
         className="flex items-center justify-center"
       >
         <Image
@@ -58,12 +38,7 @@ export function NavItem({ href, icon, title }: NavItemProps) {
         />
       </div>
       <span
-        style={{
-          fontFamily: SIDEBAR_DIMENSIONS.text.fontFamily,
-          fontSize: SIDEBAR_DIMENSIONS.text.fontSize,
-          lineHeight: SIDEBAR_DIMENSIONS.text.lineHeight,
-          fontWeight: SIDEBAR_DIMENSIONS.text.fontWeight,
-        }}
+        className="font-sans text-sm font-normal"
       >
         {title}
       </span>

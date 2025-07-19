@@ -8,7 +8,6 @@ import type { Contract, ContractsTableProps } from '@/types/contracts';
 export const ContractsTable: React.FC<ContractsTableProps> = ({
   contracts,
   className = '',
-  style = {}
 }) => {
   const columns: Column[] = [
     {
@@ -58,7 +57,6 @@ export const ContractsTable: React.FC<ContractsTableProps> = ({
       columns={columns}
       data={contracts}
       className={className}
-      style={style}
     />
   );
 }; 

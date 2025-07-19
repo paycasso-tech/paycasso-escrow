@@ -20,7 +20,7 @@ export const StatCardsRow: React.FC<{ user: any; profile: any; wallet: any }> = 
   }, [wallet]);
 
   return (
-    <div style={{ display: 'flex', gap: 24, marginBottom: 32, marginLeft: 32, width: '100%' }}>
+    <div className="flex gap-6 mb-8 ml-8 w-full">
       <StatCard
         label="Total Balance"
         value={totalBalance}

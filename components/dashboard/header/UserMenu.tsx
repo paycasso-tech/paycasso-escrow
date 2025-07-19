@@ -10,42 +10,16 @@ interface UserMenuProps {
 }
 
 // The blue profile/email menu (no trigger, always visible)
-export const UserMenu: React.FC<UserMenuProps> = ({ email, userImg = '/user.png', style }) => (
-  <div
-    style={{
-      position: 'relative',
-      width: 251.36,
-      borderRadius: 7,
-      border: '0.5px solid #2563EBCC',
-      background: '#1B345780',
-      display: 'flex',
-      alignItems: 'center',
-      padding: '0 16px',
-      gap: 12,
-      zIndex: 1000,
-      ...style,
-    }}
-  >
+export const UserMenu: React.FC<UserMenuProps> = ({ email, userImg = '/user.png' }) => (
+  <div className="relative w-[251px] rounded-lg border border-blue-600/80 bg-blue-900/40 flex items-center px-4 gap-3 z-[1000]">
     <Image
       src={userImg}
       alt="User"
-      width={33.63}
-      height={33.63}
-      style={{ borderRadius: '50%' }}
+      width={34}
+      height={34}
+      className="rounded-full"
     />
-    <span
-      style={{
-        color: '#fff',
-        fontFamily: 'Poppins, sans-serif',
-        fontWeight: 400,
-        fontSize: 12,
-        width: 157,
-        height: 18,
-        overflow: 'hidden',
-        whiteSpace: 'nowrap',
-        textOverflow: 'ellipsis',
-      }}
-    >
+    <span className="text-white font-poppins font-normal text-xs w-[157px] h-[18px] overflow-hidden whitespace-nowrap text-ellipsis">
       {email}
     </span>
     <Image src="/arrow-down.svg" alt="Arrow Down" width={16} height={16} />
@@ -56,10 +30,10 @@ export const UserMenu: React.FC<UserMenuProps> = ({ email, userImg = '/user.png'
 export const UserMenuTrigger: React.FC<UserMenuProps> = ({ email, userImg }) => {
   const [open, setOpen] = useState(false);
   return (
-    <div style={{ position: 'relative', display: 'inline-block' }}>
+    <div className="relative inline-block">
       <button
         onClick={() => setOpen(true)}
-        style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, marginLeft: 16 }}
+        className="bg-none border-none cursor-pointer p-0 ml-4"
         aria-label="User menu"
       >
         <Image src="/dots.svg" alt="User menu" width={24} height={24} />
@@ -68,18 +42,11 @@ export const UserMenuTrigger: React.FC<UserMenuProps> = ({ email, userImg }) => 
         <>
           {/* Overlay to close modal on outside click */}
           <div
-            style={{
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              width: '100vw',
-              height: '100vh',
-              zIndex: 999,
-            }}
+            className="fixed top-0 left-0 w-screen h-screen z-[999]"
             onClick={() => setOpen(false)}
           />
           <div
-            style={{ position: 'absolute', top: 36, right: 0 }}
+            className="absolute top-9 right-0"
             onClick={e => e.stopPropagation()}
           >
             <UserMenu email={email} userImg={userImg} />

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
-import { signOutAction } from "@/app/actions";
 import { hasEnvVars } from "@/lib/utils/supabase/check-env-vars";
 import { createSupabaseServerComponentClient } from "@/lib/supabase/server-client";
 
@@ -60,7 +59,7 @@ export default async function AuthButton() {
       <Button variant={"ghost"}>
         <Link href="/dashboard">Dashboard</Link>
       </Button>
-      <form action={signOutAction}>
+      <form>
         <Button type="submit" variant={"outline"}>
           Sign out
         </Button>

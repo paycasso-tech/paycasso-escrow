@@ -185,7 +185,7 @@ export const CreateAgreementPage = () => {
                       variant="outline"
                       role="combobox"
                       aria-expanded={open}
-                      className="w-[300px] justify-between w-full"
+                      className="w-full justify-between"
                     >
                       {selectedBeneficiary
                         ? selectedBeneficiary.name

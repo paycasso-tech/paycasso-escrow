@@ -33,29 +33,13 @@ export const DataTable: React.FC<DataTableProps> = ({
   };
 
   return (
-    <div style={defaultStyle} className={className}>
+    <div className={"w-[95%] rounded-xl bg-[#0D0D0D] border border-[#2B2B2B80] overflow-hidden " + className}>
       {/* Table Header */}
-      <div style={{
-        display: 'flex',
-        background: '#1D1D1D',
-        borderTopLeftRadius: 10,
-        borderTopRightRadius: 10,
-        height: 51,
-        alignItems: 'center',
-        fontFamily: 'Poppins, sans-serif',
-        fontWeight: 500,
-        fontSize: 14,
-        color: '#959595',
-        borderBottom: '0.85px solid #6A66664D',
-      }}>
+      <div className="flex bg-gray-800 rounded-t-lg h-13 items-center font-poppins font-medium text-sm text-gray-500 border-b border-gray-600">
         {columns.map((column, index) => (
           <div
             key={column.key}
-            style={{
-              flex: column.flex || 1,
-              paddingLeft: index === 0 ? 32 : 0,
-              textAlign: column.align || 'left',
-            }}
+            className={`flex ${column.flex || 1} ${index === 0 ? 'pl-8' : ''}`}
           >
             {column.label}
           </div>
@@ -66,26 +50,12 @@ export const DataTable: React.FC<DataTableProps> = ({
       {data.map((row, rowIndex) => (
         <div
           key={row.id || rowIndex}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            height: 53,
-            fontFamily: 'Poppins, sans-serif',
-            fontWeight: 500,
-            fontSize: 13,
-            color: '#959595',
-            borderBottom: rowIndex === data.length - 1 ? 'none' : '0.85px solid #6A66664D',
-            background: 'transparent',
-          }}
+          className={`flex items-center h-13 font-poppins font-medium text-sm text-gray-500 border-b border-gray-600 ${rowIndex === data.length - 1 ? 'border-none' : 'border-gray-600'}`}
         >
           {columns.map((column, colIndex) => (
             <div
               key={column.key}
-              style={{
-                flex: column.flex || 1,
-                paddingLeft: colIndex === 0 ? 32 : 0,
-                textAlign: column.align || 'left',
-              }}
+              className={`flex ${column.flex || 1} ${colIndex === 0 ? 'pl-8' : ''}`}
             >
               {column.render ? column.render(row[column.key], row) : row[column.key]}
             </div>

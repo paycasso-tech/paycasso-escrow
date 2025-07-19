@@ -223,7 +223,7 @@ export const EscrowAgreementItem: React.FC<EscrowAgreementCardProps> = ({
               <input
                 type="file"
                 accept="image/*"
-                style={{ display: "none" }}
+                className="hidden"
                 ref={fileInputRef}
                 onChange={event => submitWork(event, agreement.circle_contract_id)}
               />

@@ -158,7 +158,7 @@ interface FeatureCardProps {
 
 const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description }) => {
   return (
-    <div className="bg-card p-6 rounded-lg border border-border">
+    <div className="bg-card p-6 rounded-lg border border-border flex flex-col items-center">
       <div className="flex items-center justify-center mb-4">{icon}</div>
       <h3 className="text-xl font-semibold text-center mb-2">{title}</h3>
       <p className="text-muted-foreground text-center">{description}</p>

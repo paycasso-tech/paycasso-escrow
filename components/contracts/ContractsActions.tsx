@@ -16,27 +16,25 @@ export const ContractsActions: React.FC<ContractsActionsProps> = ({
   style = {}
 }) => {
   return (
-    <>
+    <div className="flex gap-4">
       <ActionButton
         text="Export CSV"
         icon="upload"
         iconAlt="Export"
-        variant="muted"
+        variant="outline"
         size="md"
-        color="#fff"
         onClick={onExportCSV}
-        style={{ marginRight: 16 }}
+        className="mr-2"
       />
       <ActionButton
         text="Add New Contract"
         icon="plus"
         iconAlt="Add"
-        variant="primary"
+        variant="default"
         size="lg"
-        color="#fff"
         iconAfter={true}
         onClick={onAddNew}
       />
-    </>
+    </div>
   );
 }; 

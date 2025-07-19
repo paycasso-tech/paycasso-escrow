@@ -10,27 +10,9 @@ export interface ContractsSummaryProps {
 export const ContractsSummary: React.FC<ContractsSummaryProps> = ({
   totalCount,
   className = '',
-  style = {}
 }) => {
-  const defaultStyle: React.CSSProperties = {
-    width: 'auto',
-    minWidth: 140,
-    height: 20,
-    fontFamily: 'Poppins, sans-serif',
-    fontWeight: 500,
-    fontSize: 13,
-    lineHeight: '100%',
-    letterSpacing: 0,
-    color: '#6D6D6D',
-    marginTop: 18,
-    marginBottom: 18,
-    marginLeft: 2,
-    paddingLeft: 8,
-    ...style,
-  };
-
   return (
-    <div style={defaultStyle} className={className}>
+    <div className={"min-w-[140px] h-5 font-poppins font-medium text-sm text-muted-foreground mt-4 mb-4 ml-1 pl-2 " + className}>
       Total {totalCount} contracts
     </div>
   );

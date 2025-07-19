@@ -37,8 +37,6 @@ export default async function DashboardPage() {
       </div>
     );
   }
-
-  // Extract first name from user data
   let firstName = user?.user_metadata?.full_name?.split(' ')[0];
   if (!firstName && user?.email) {
     firstName = user.email.split('@')[0];
@@ -80,7 +78,6 @@ export default async function DashboardPage() {
           <CreateAgreementPage />
         </div>
       </div>
-
       <StatCardsRow user={user} profile={profile} wallet={wallet} />
       <RecentTransactionsSection user={user} profile={profile} wallet={wallet} />
       <QuickActionsAndApprovalsRow user={user} profile={profile} wallet={wallet} />

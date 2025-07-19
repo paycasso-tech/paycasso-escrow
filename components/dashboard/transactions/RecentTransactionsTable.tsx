@@ -42,7 +42,7 @@ export const RecentTransactionsTable: React.FC<{ user: any; profile: any; wallet
       label: 'TRANSACTION ID',
       flex: 1.2,
       render: (value) => (
-        <span style={{ color: '#959595', fontSize: 12 }}>{value}</span>
+        <span className="text-[#959595] text-xs">{value}</span>
       ),
     },
     {
@@ -72,7 +72,7 @@ export const RecentTransactionsTable: React.FC<{ user: any; profile: any; wallet
     <DataTable
       columns={columns}
       data={transactions}
-      style={{ paddingLeft: 24 }}
+      className="pl-6"
     />
   );
 }; 
