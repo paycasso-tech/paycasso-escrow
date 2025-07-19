@@ -3,7 +3,7 @@ import React from 'react';
 import { DataTable, Column } from '@/components/ui/data-table';
 import { StatusBadge } from '@/components/ui/status-badge';
 import { ActionButtons } from '@/components/ui/action-buttons';
-import type { Contract, ContractsTableProps } from '@/types/contracts';
+import type { ContractsTableProps } from '@/types/contracts';
 
 export const ContractsTable: React.FC<ContractsTableProps> = ({
   contracts,
