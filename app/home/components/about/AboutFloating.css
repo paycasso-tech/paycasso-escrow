@@ -1,0 +1,20 @@
+@keyframes floatLeft {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(-96px); }
+    100% { transform: translateX(0); }
+  }
+  
+  @keyframes floatRight {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(96px); }
+    100% { transform: translateX(0); }
+  }
+  
+  .floating-left {
+    animation: floatLeft 6s ease-in-out infinite;
+  }
+  
+  .floating-right {
+    animation: floatRight 6s ease-in-out infinite;
+  }
+  
