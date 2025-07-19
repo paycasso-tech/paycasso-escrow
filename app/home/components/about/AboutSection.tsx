@@ -34,52 +34,74 @@ const cards = [
 function getColumn(idx: number) {
   return idx % 2;
 }
-function getRow(idx: number) {
-  return Math.floor(idx / 2);
+function getOtherRowIdx(idx: number) {
+  return idx < 2 ? idx + 2 : idx - 2;
 }
 
 export default function AboutSection() {
   const [expanded, setExpanded] = useState<number | null>(null);
+  const [leftAnim, setLeftAnim] = useState(0);
+  const [rightAnim, setRightAnim] = useState(0);
+
+  useEffect(() => {
+    let leftDir = 1;
+    let rightDir = -1;
+    const interval = setInterval(() => {
+      setLeftAnim((prev) => (prev >= 48 ? 0 : prev + leftDir));
+      setRightAnim((prev) => (prev <= -48 ? 0 : prev + rightDir));
+    }, 60);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <section className="relative w-full flex flex-col items-center justify-center min-h-screen py-16 overflow-visible">
+    <section className="relative w-full flex flex-col items-center justify-center min-h-screen py-16" style={{overflow: 'visible'}}>
       <Image
         src="/about-bg-left.svg"
         alt="Background Left"
-        width={400}
-        height={600}
-        className={`absolute left-0 top-0 z-0 pointer-events-none select-none floating-left`}
+        width={600}
+        height={800}
+        className={`absolute left-0 z-0 pointer-events-none select-none transition-all duration-700`}
+        style={{top: '20%', transform: `translateX(${leftAnim}px)`}}
         draggable={false}
       />
       <Image
         src="/about-bg-right.svg"
         alt="Background Right"
-        width={500}
-        height={500}
-        className={`absolute right-0 bottom-0 z-0 pointer-events-none select-none floating-right`}
+        width={700}
+        height={900}
+        className={`absolute right-0 z-0 pointer-events-none select-none transition-all duration-700`}
+        style={{top: '25%', transform: `translateX(${rightAnim}px)`}}
         draggable={false}
       />
-      <div className="relative z-10 grid grid-cols-2 gap-x-6 gap-y-8" style={{ width: 600 }}>
+      <div
+        className="relative z-10 grid grid-cols-2 gap-x-4 gap-y-8"
+        style={{ width: 560 }}
+      >
         {cards.map((card, idx: number) => {
-          const isHovered = expanded === idx;
-          const isOpposite =
-            expanded !== null &&
-            getColumn(expanded) === getColumn(idx) &&
-            Math.abs(getRow(expanded) - getRow(idx)) === 1;
-
+          let isExpanded = false;
+          let isCollapsed = false;
+          if (expanded === idx) {
+            isExpanded = true;
+          } else if (expanded !== null && getOtherRowIdx(expanded) === idx && getColumn(expanded) === getColumn(idx)) {
+            isCollapsed = true;
+          }
           return (
             <AboutCard
               key={card.title}
               image={card.image}
               title={card.title}
               alt={card.alt}
-              collapsed={isOpposite}
-              highlighted={isHovered}
-              animate={isHovered || isOpposite}
+              collapsed={isCollapsed}
+              highlighted={expanded === idx}
               onMouseEnter={() => setExpanded(idx)}
               onMouseLeave={() => setExpanded(null)}
+              style={{
+                width: 260,
+                height: isExpanded ? 260 : isCollapsed ? 60 : 200,
+                transition: 'height 0.5s, width 0.5s',
+              }}
             >
-              {isHovered && <div>{card.content}</div>}
+              {expanded === idx && <div>{card.content}</div>}
             </AboutCard>
           );
         })}
