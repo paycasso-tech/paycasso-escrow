@@ -38,6 +38,7 @@ export default function VisionSection() {
           zIndex: 0,
           pointerEvents: 'none',
           userSelect: 'none',
+          overflow: 'visible',
         }}
         draggable={false}
       />
@@ -53,6 +54,7 @@ export default function VisionSection() {
           height: '420px',
           zIndex: 0,
           pointerEvents: 'none',
+          overflow: 'visible',
           userSelect: 'none',
         }}
         draggable={false}
