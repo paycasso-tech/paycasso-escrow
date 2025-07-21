@@ -30,7 +30,7 @@ export const Bell: React.FC = () => {
       </button>
       {open && (
         <div
-          className="absolute top-9 right-0 min-w-[220px] bg-zinc-900 rounded-xl p-6 text-white z-[1000] shadow-lg"
+          className="absolute top-9 right-0 min-w-[220px] bg-zinc-900 rounded-xl p-6 text-white z-1000 shadow-lg"
         >
           <div className="text-center">No notifications</div>
         </div>

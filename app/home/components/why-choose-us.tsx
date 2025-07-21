@@ -1,12 +1,14 @@
+import SectionUnderlineLabel from "@/components/section-underline-label";
 import { IconBrandOpenai } from "@tabler/icons-react";
 import { SiHuggingface } from "react-icons/si";
 
 export default function WhyChooseUs() {
   return (
-    <div className="flex justify-center items-center w-full">
-      <div className="w-full max-w-5xl">
+    <div className="flex flex-col justify-center mt-10 md:mt-20 items-center w-full">
+      <SectionUnderlineLabel title="Why Choose Us" />
+      <div className="w-full max-w-5xl py-10">
         <div className="grid grid-cols-3 gap-5">
-          <div className="col-span-2 relative bg-neutral-950 border flex flex-col justify-between h-[28rem] rounded-2xl p-4 md:p-7">
+          <div className="col-span-2 relative bg-neutral-950 border flex flex-col justify-between h-112 rounded-2xl p-4 md:p-7">
             <div className="space-y-3">
               <div className="flex items-center gap-1">
                 <img src="/website/dual.svg" className="w-5" />
@@ -40,7 +42,7 @@ export default function WhyChooseUs() {
               alt="Lock vector illustration"
             />
           </div>
-          <div className="col-span-1 bg-neutral-950 border flex flex-col justify-between h-[28rem] rounded-2xl">
+          <div className="col-span-1 bg-neutral-950 border flex flex-col justify-between h-112 rounded-2xl">
             <div className="space-y-3 p-4  md:p-7">
               <div className="flex items-center gap-1">
                 <img src="/website/secure-icon.svg" className="w-5" />
@@ -87,7 +89,7 @@ export default function WhyChooseUs() {
               </div>
             </div>
           </div>
-          <div className="col-span-1  bg-neutral-950 border flex flex-col justify-between h-[28rem] rounded-2xl">
+          <div className="col-span-1  bg-neutral-950 border flex flex-col justify-between h-112 rounded-2xl">
             <div className="space-y-3 p-4 md:p-7">
               <div className="flex items-start gap-1">
                 <img src="/website/dispute.svg" className="w-5 mt-1" />
@@ -108,7 +110,7 @@ export default function WhyChooseUs() {
               </div>
             </div>
           </div>
-          <div className="col-span-1 bg-neutral-950 border flex flex-col justify-between h-[28rem] rounded-2xl" style={{
+          <div className="col-span-1 bg-neutral-950 border flex flex-col justify-between h-112 rounded-2xl" style={{
             backgroundImage: "url('/website/pocket-friendly.svg')",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
@@ -125,7 +127,7 @@ export default function WhyChooseUs() {
 
             </div>
           </div>
-          <div className="col-span-1 bg-neutral-950 overflow-hidden border flex flex-col justify-between h-[28rem] relative rounded-2xl"
+          <div className="col-span-1 bg-neutral-950 overflow-hidden border flex flex-col justify-between h-112 relative rounded-2xl"
           >
             <div className="space-y-3 p-4 md:p-7">
               <div className="flex items-center gap-1">

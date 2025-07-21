@@ -1,4 +1,6 @@
 "use client";
+import SectionLabel from "@/components/section-label";
+import SectionUnderlineLabel from "@/components/section-underline-label";
 import React from "react";
 
 export default function OurServices() {
@@ -19,11 +21,13 @@ export default function OurServices() {
   }, []);
 
   return (
-    <div className="flex justify-center items-center w-full relative">
-      <div className="w-full max-w-5xl grid md:grid-cols-4 relative gap-5 p-10 pb-0 z-3">
+    <div className="flex flex-col my-10 md:my-20 justify-center items-center w-full relative" >
+      <img src="/website/square-grid-bg.svg" className="w-full absolute top-0 lg:-top-56"/>
+      <SectionUnderlineLabel title="Our Services" />
+      <div className="w-full max-w-5xl grid md:grid-cols-4 relative gap-5 py-10 pb-0 z-3">
         <div className="px-3 md:px-5 py-5 space-y-3 border rounded-xl bg-black md:col-span-1">
           <img
-            src="/smart-contract-escrow.svg"
+            src="/website/smart-contract-escrow.svg"
             alt=""
             className="w-12 h-12 mb-3"
           />
@@ -47,15 +51,15 @@ export default function OurServices() {
             />
           </div>
         </div>
-        {/* <div className="px-3 md:px-5 py-5 flex justify-center bg-gradient-to-b from-neutral-950 to-neutral-800  border rounded-xl md:col-span-2 border-t-0 border-b-0 relative">
+        {/* <div className="px-3 md:px-5 py-5 flex justify-center bg-linear-to-b from-neutral-950 to-neutral-800  border rounded-xl md:col-span-2 border-t-0 border-b-0 relative">
           <h1 className="font-medium text-3xl md:text-4xl lg:text-5xl mt-5">
             Welcome!
           </h1>
-          <div className="bg-black absolute -bottom-[1px] border border-b-0 left-1/2 -translate-x-1/2 rounded-t-full w-66 h-33"></div>
+          <div className="bg-black absolute -bottom-px border border-b-0 left-1/2 -translate-x-1/2 rounded-t-full w-66 h-33"></div>
         </div> */}
         <div className="px-3 md:px-5 py-5 space-y-3 border rounded-xl bg-black col-span-1">
           <img
-            src="/gasless-transaction.svg"
+            src="/website/gasless-transaction.svg"
             alt=""
             className="w-12 h-12 mb-3"
           />

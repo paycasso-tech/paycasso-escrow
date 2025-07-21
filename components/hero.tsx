@@ -23,7 +23,7 @@ const LandingPage = () => {
               <Shield className="w-8 h-8 text-blue-500" />
               <Zap className="w-8 h-8 text-amber-500" />
             </div>
-            <p className="text-4xl md:text-5xl lg:text-6xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-amber-600 leading-tight">
+            <p className="text-4xl md:text-5xl lg:text-6xl font-bold text-center bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-amber-600 leading-tight">
               Effortless Escrow for Secure Deals
             </p>
             <p className="mt-4 text-xl md:text-2xl text-center text-muted-foreground">
@@ -74,7 +74,7 @@ const LandingPage = () => {
       </section>
 
       {/* How It Works Section - Full width background */}
-      <section className="w-full bg-gradient-to-b from-background to-muted/50 py-16">
+      <section className="w-full bg-linear-to-b from-background to-muted/50 py-16">
         <div className="max-w-5xl mx-auto space-y-8">
           <h2 className="text-3xl md:text-4xl font-bold text-center">
             How It Works
