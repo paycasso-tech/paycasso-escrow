@@ -17,7 +17,7 @@ export default function Signup({ searchParams }: { searchParams: Message }) {
   return (
     <div className="flex flex-col gap-6">
       <form className="flex-1 flex flex-col min-w-64">
-        <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-amber-600">
+        <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-amber-600">
           Create an account
         </h1>
         <p className="text-sm text-muted-foreground mt-1">

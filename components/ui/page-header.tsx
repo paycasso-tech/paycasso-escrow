@@ -36,7 +36,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
       {/* Page Title and Actions */}
       <div className="flex items-center gap-4 mt-12 mb-6">
         <div className="flex flex-col gap-2">
-          <span className="font-semibold text-3xl leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white to-white">
+          <span className="font-semibold text-3xl leading-none tracking-tight text-transparent bg-clip-text bg-linear-to-r from-white to-white">
             {title}
           </span>
           {subtitle && (

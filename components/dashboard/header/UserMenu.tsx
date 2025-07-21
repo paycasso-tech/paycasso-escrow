@@ -11,7 +11,7 @@ interface UserMenuProps {
 
 // The blue profile/email menu (no trigger, always visible)
 export const UserMenu: React.FC<UserMenuProps> = ({ email, userImg = '/user.png' }) => (
-  <div className="relative w-[251px] rounded-lg border border-blue-600/80 bg-blue-900/40 flex items-center px-4 gap-3 z-[1000]">
+  <div className="relative w-[251px] rounded-lg border border-blue-600/80 bg-blue-900/40 flex items-center px-4 gap-3 z-1000">
     <Image
       src={userImg}
       alt="User"
@@ -42,7 +42,7 @@ export const UserMenuTrigger: React.FC<UserMenuProps> = ({ email, userImg }) => 
         <>
           {/* Overlay to close modal on outside click */}
           <div
-            className="fixed top-0 left-0 w-screen h-screen z-[999]"
+            className="fixed top-0 left-0 w-screen h-screen z-999"
             onClick={() => setOpen(false)}
           />
           <div
