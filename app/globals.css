@@ -68,8 +68,24 @@
   * {
     @apply border-border;
   }
-  body, html {
+
+  body,
+  html {
     @apply bg-background text-foreground;
     font-family: 'Poppins', sans-serif;
+  }
+}
+
+.animate-marquee-horizontal {
+  animation: marquee var(--duration, 10s) linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
   }
 }
