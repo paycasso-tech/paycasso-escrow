@@ -9,7 +9,7 @@ export interface ActionButtonProps {
   iconAlt?: string;
   onClick?: () => void;
   disabled?: boolean;
-  variant?: "default" | "secondary" | "outline-solid" | "destructive" | "ghost" | "link";
+  variant?: "default" | "secondary" | "outline" | "destructive" | "ghost" | "link";
   size?: "sm" | "md" | "lg" | "icon";
   iconAfter?: boolean;
   className?: string;
@@ -21,7 +21,7 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
   iconAlt,
   onClick,
   disabled = false,
-  variant = "outline-solid",
+  variant = "outline",
   size = "md",
   iconAfter = false,
   className = "",

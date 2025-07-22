@@ -8,7 +8,7 @@ export interface IconButtonProps {
   alt: string;
   onClick?: () => void;
   disabled?: boolean;
-  variant?: "default" | "secondary" | "outline-solid" | "destructive" | "ghost" | "link";
+  variant?: "default" | "secondary" | "outline" | "destructive" | "ghost" | "link";
   size?: "sm" | "md" | "lg" | "icon";
   className?: string;
 }
@@ -18,7 +18,7 @@ export const IconButton: React.FC<IconButtonProps> = ({
   alt,
   onClick,
   disabled = false,
-  variant = "outline-solid",
+  variant = "outline",
   size = "icon",
   className = "",
 }) => {

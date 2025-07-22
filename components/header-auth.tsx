@@ -33,7 +33,7 @@ export default async function AuthButton() {
             <Button
               asChild
               size="sm"
-              variant={"outline-solid"}
+              variant={"outline"}
               disabled
               className="opacity-75 cursor-none pointer-events-none"
             >
@@ -60,14 +60,14 @@ export default async function AuthButton() {
         <Link href="/dashboard">Dashboard</Link>
       </Button>
       <form>
-        <Button type="submit" variant={"outline-solid"}>
+        <Button type="submit" variant={"outline"}>
           Sign out
         </Button>
       </form>
     </div>
   ) : (
     <div className="flex gap-2">
-      <Button asChild size="sm" variant={"outline-solid"}>
+      <Button asChild size="sm" variant={"outline"}>
         <Link href="/sign-in">Sign in</Link>
       </Button>
       <Button asChild size="sm" variant={"default"}>
