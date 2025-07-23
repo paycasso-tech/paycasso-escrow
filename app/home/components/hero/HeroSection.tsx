@@ -25,7 +25,7 @@ function AnimatedPaycasso() {
         fontWeight: 700,
         fontSize: 72,
         lineHeight: '115%',
-        marginTop: 96,
+        marginTop: 220,
         marginBottom: 8,
       }}
     >
@@ -39,7 +39,7 @@ function AnimatedPaycasso() {
 export default function HeroSection() {
   return (
     <section className="w-full flex flex-col items-center font-poppins">
-      <AnimatedPaycasso />
+      <AnimatedPaycasso/>
       <HeroHeading />
       <div className="mb-8 w-full flex justify-center">
         <HeroButton />

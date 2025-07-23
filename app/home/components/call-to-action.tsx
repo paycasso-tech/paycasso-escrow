@@ -21,7 +21,7 @@ export default function CallToAction() {
 
 
   return (
-    <div className="w-full flex justify-center items-center bg-neutral-950">
+    <div id="call-to-action" className="w-full flex justify-center items-center bg-neutral-950">
       <div className="w-full max-w-2xl py-10">
         <h2 className="font-bold text-3xl md:text-4xl lg:text-[2.5rem] mb-10">
           Ready to join the revolution?

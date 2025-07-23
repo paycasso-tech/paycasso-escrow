@@ -8,7 +8,6 @@ import Link from "next/link";
 import "./globals.css";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { DashboardSidebar } from "@/components/dashboard/sidebar";
-import Navbar from "@/components/Navbar";
 
 const defaultUrl = process.env.NEXT_PUBLIC_VERCEL_URL
   ? process.env.NEXT_PUBLIC_VERCEL_URL
@@ -37,7 +36,6 @@ export default function RootLayout({
           <Toaster expand />
           <div className="w-full flex flex-col items-center min-h-screen">
             <div className="w-full flex justify-center">
-              <Navbar />
             </div>
             <main className="flex-1 w-full flex flex-col items-center">
               {children}
